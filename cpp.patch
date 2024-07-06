@@ -1,6 +1,12 @@
 --- src/log.c	2024-07-06 23:35:05.514116136 +0700
-+++ src/log.cc	2024-07-06 23:28:39.570778306 +0700
-@@ -60,12 +60,12 @@
++++ src/log.cc	2024-07-07 00:16:51.260812267 +0700
+@@ -55,17 +55,17 @@
+   buf[strftime(buf, sizeof(buf), "%H:%M:%S", ev->time)] = '\0';
+ #ifdef LOG_USE_COLOR
+   fprintf(
+-    ev->udata, "%s %s%-5s\x1b[0m \x1b[90m%s:%d:\x1b[0m ",
++    (FILE*)ev->udata, "%s %s%-5s\x1b[0m \x1b[90m%s:%d:\x1b[0m ",
+     buf, level_colors[ev->level], level_strings[ev->level],
      ev->file, ev->line);
  #else
    fprintf(
